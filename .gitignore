@@ -26,4 +26,4 @@ bin/
 *.class
 .DS_Store
 *.txt
-src/*.csv
+*.csv
