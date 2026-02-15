@@ -28,6 +28,11 @@ public class Main {
         List<Map.Entry<String, Integer>> sortedWords = wordCounter.getSortedWords();
 
         WordFrequencyCsvWriter writer = new WordFrequencyCsvWriter();
-        writer.processCSV(sortedWords, wordCounter.getTotalWords());
+
+        try {
+            writer.processCSV(sortedWords, wordCounter.getTotalWords());
+        } catch (IOException e) {
+            System.err.println("Ошибка записи CSV: " + e.getMessage());
+        }
     }
 }

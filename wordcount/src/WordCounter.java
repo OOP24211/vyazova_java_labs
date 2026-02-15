@@ -1,27 +1,16 @@
 import java.util.*;
 
 public class WordCounter {
-    private static Map<String, Integer> wordCount = new HashMap<>();
-    private static int totalWords = 0;
+    private Map<String, Integer> wordCount = new HashMap<>();
+    private int totalWords = 0;
 
     public void processLine(String line) {
-        StringBuilder sb = new StringBuilder();
-        for (char ch : line.toCharArray()) {
-            if (Character.isLetterOrDigit(ch)) {
-                sb.append(ch);
-            } else {
-                if (sb.length() > 0) {
-                    addWord(sb.toString());
-                    sb.setLength(0);
-                }
-            }
-        }
-        if (sb.length() > 0) {
-            addWord(sb.toString());
-        }
+        Arrays.stream(line.split("[^\\p{L}\\p{Nd}]+"))
+                .filter(word -> !word.isEmpty())
+                .forEach(this::addWord);
     }
 
-    private static void addWord(String word) {
+    private void addWord(String word) {
         word = word.toLowerCase();
         wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
         totalWords++;

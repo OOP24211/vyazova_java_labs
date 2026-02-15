@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class WordFrequencyCsvWriter {
-    public void processCSV(List<Map.Entry<String, Integer>> sortedWords, int totalWords) {
+    public void processCSV(List<Map.Entry<String, Integer>> sortedWords, int totalWords) throws IOException {
 
         try (FileWriter writer = new FileWriter("Result.csv")) { // файл создается автоматически
             writer.append("Слово, Частота, Частота(в %)\n");
@@ -20,9 +20,6 @@ public class WordFrequencyCsvWriter {
                         .append("%")
                         .append("\n");
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
