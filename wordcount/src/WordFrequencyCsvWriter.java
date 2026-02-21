@@ -1,20 +1,18 @@
-import java.util.*;
-import java.io.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class WordFrequencyCsvWriter {
-    public void processCSV(List<Map.Entry<String, Integer>> sortedWords, int totalWords) throws IOException {
-
-        try (FileWriter writer = new FileWriter("Result.csv")) { // файл создается автоматически
+    public void processCSV(List<WordStat> sortedWords,
+                           int totalWords) throws IOException {
+        try (FileWriter writer = new FileWriter("Result.csv")) {
             writer.append("Слово, Частота, Частота(в %)\n");
-
-            for (Map.Entry<String, Integer> entry : sortedWords) {
-                String word = entry.getKey();
-                int freq = entry.getValue();
-                double percent = (freq * 100.0) / totalWords;
-
-                writer.append(word)
+            for (WordStat stat : sortedWords) {
+                double percent = (stat.getCount() * 100.0) / totalWords;
+                writer.append(stat.getWord())
                         .append(",")
-                        .append(String.valueOf(freq))
+                        .append(String.valueOf(stat.getCount()))
                         .append(",")
                         .append(String.format(Locale.US, "%.2f", percent))
                         .append("%")

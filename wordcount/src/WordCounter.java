@@ -1,6 +1,8 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class WordCounter {
+
     private final Map<String, Integer> wordCount = new HashMap<>();
     private int totalWords = 0;
 
@@ -9,20 +11,18 @@ public class WordCounter {
                 .filter(word -> !word.isEmpty())
                 .forEach(this::addWord);
     }
-
     private void addWord(String word) {
         word = word.toLowerCase(Locale.ROOT);
         wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
         totalWords++;
     }
-    public List<Map.Entry<String, Integer>> getSortedWords() {
-        List<Map.Entry<String, Integer>> entryList = new ArrayList<>(wordCount.entrySet());
-
-        entryList.sort((e1,e2) -> Integer.compare(e2.getValue(), e1.getValue()));
-
-        return entryList;
+    public List<WordStat> getSortedWords() {
+        return wordCount.entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .map(entry -> new WordStat(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
     }
-    
     public int getTotalWords() {
         return totalWords;
     }

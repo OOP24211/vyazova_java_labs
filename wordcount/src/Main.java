@@ -1,6 +1,5 @@
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.io.IOException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,11 +8,10 @@ public class Main {
             return;
         }
         String filename = args[0];
-        FileHandler filehandler = new FileHandler(filename);
+        FileHandler fileHandler = new FileHandler(filename);
         WordCounter wordCounter = new WordCounter();
-
         try {
-            filehandler.processFile(
+            fileHandler.processFile(
                     line -> line,
                     wordCounter::processLine
             );
@@ -21,11 +19,8 @@ public class Main {
             System.err.println("Ошибка чтения файла: " + e.getMessage());
             return;
         }
-
-        List<Map.Entry<String, Integer>> sortedWords = wordCounter.getSortedWords();
-
+        List<WordStat> sortedWords = wordCounter.getSortedWords();
         WordFrequencyCsvWriter writer = new WordFrequencyCsvWriter();
-
         try {
             writer.processCSV(sortedWords, wordCounter.getTotalWords());
         } catch (IOException e) {
