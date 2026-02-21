@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class FileHandler {
-    private String filename;
+    private final String filename;
     public FileHandler(String filename) {
         this.filename = filename;
     }

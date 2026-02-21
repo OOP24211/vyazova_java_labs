@@ -14,11 +14,8 @@ public class Main {
 
         try {
             filehandler.processFile(
-                    line -> {
-                        wordCounter.processLine(line);
-                        return line;
-                    },
-                    obj -> {}
+                    line -> line,
+                    wordCounter::processLine
             );
         } catch (IOException e) {
             System.err.println("Ошибка чтения файла: " + e.getMessage());
