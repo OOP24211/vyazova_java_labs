@@ -26,4 +26,8 @@ public class WordCounter {
     public int getTotalWords() {
         return totalWords;
     }
+    //для проверки слов на валидность
+    public List<String> getAllWords() {
+        return wordCount.keySet().stream().toList();
+    }
 }
