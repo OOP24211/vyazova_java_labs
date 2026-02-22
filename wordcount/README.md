@@ -1,33 +1,45 @@
 # CSV Word Counter
 
 ## Description
-This Java project reads a text file, counts the frequency of each word, and outputs the results into a CSV file named `Result.csv`.  
-Words are processed using `Character.isLetterOrDigit` to ensure proper separation, ignoring punctuation and special characters. The CSV includes:
+This Java project reads a `.txt` file, counts the frequency of each word, and outputs the results into a CSV file named `Result.csv`.
+
+Words are processed using a regular expression (`\p{L}`, `\p{Nd}`) to keep only letters and digits, ignoring punctuation and special characters.
+
+The generated CSV file contains:
 
 - **Word** — the word itself  
 - **Frequency** — the number of times the word appears  
 - **Percentage** — the relative frequency of the word as a percentage of total words  
 
-The project demonstrates working with file input/output, maps, lists, and method references in Java.
+The project includes basic input validation:
+- Checks that a filename argument is provided
+- Checks that the file exists
+- Ensures the file has a `.txt` extension
+
+The project demonstrates:
+- File input/output (UTF-8)
+- Exception handling
+- Maps and Lists
+- Streams API
+- Method references
+- Basic validation logic
 
 ---
 
 ## Project Structure
 
-- `Main.java` — the main class that orchestrates the file processing and CSV output  
-- `FileHandler.java` — handles reading the text file line by line  
-- `WordCounter.java` — processes each line, counts word occurrences  
-- `WriterCSV.java` — writes the sorted word count and percentages into `Result.csv`  
+- `Main.java` — entry point of the application  
+- `FileHandler.java` — reads the text file line by line (UTF-8)  
+- `WordCounter.java` — processes lines and counts word occurrences  
+- `WordFrequencyCsvWriter.java` — writes sorted word statistics into `Result.csv`  
+- `WordStat.java` — data class that stores word and count  
+- `validation/` — contains argument and word validation logic  
 
 ---
 
 ## Usage
 
-1. Compile all Java files:
-   ```bash
-   javac src/*.java
+### 1. Compile the project
 
-
-Run the program with a text file as an argument:
-"java -cp src Main Text.txt"
-After running, a CSV file Result.csv will be created in the project directory.
+```bash
+javac src/*.java src/validation/**/*.java
