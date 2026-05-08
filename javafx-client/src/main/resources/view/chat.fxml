@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.client.controller.ChatController">
+
+    <top>
+        <HBox spacing="10" style="-fx-padding: 10;">
+            <Button text="← Back to Rooms" onAction="#backToRooms"/>
+            <Label fx:id="titleLabel" text="Chat Room" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TextArea fx:id="chatArea" editable="false" wrapText="true"/>
+    </center>
+
+    <bottom>
+        <VBox spacing="5">
+            <HBox spacing="10" style="-fx-padding: 10;">
+                <TextField fx:id="messageField"
+                           promptText="Type message..."
+                           onAction="#sendMessage"
+                           HBox.hgrow="ALWAYS"/>
+                <Button text="Send" onAction="#sendMessage"/>
+                <Button text="📎 Send File" onAction="#sendFile"/>
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>
