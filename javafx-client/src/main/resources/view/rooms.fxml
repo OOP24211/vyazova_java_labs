@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.client.controller.RoomController">
+
+    <top>
+        <HBox spacing="10" style="-fx-padding: 10;">
+            <Label text="Rooms"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="10" style="-fx-padding: 10;">
+
+            <ListView fx:id="roomsList" prefHeight="300"/>
+
+            <HBox spacing="10">
+                <TextField fx:id="roomNameField" promptText="New room name"/>
+                <Button text="Create" onAction="#createRoom"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" style="-fx-padding: 10;">
+            <Button text="Join Room" onAction="#joinRoom"/>
+            <Button text="Refresh" onAction="#loadRooms"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
